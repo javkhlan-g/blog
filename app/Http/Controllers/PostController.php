@@ -44,12 +44,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //var_dump();
-        $post = new Post;
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->save();
 
-        return Redirect::to('post');
+        for ($i = 1; $i < 10000; $i++) {
+            $post = new Post;
+            $post->title = $i.$request->input('title');
+            $post->content = $i.$request->input('content');
+            $post->save();
+        }
+        return Redirect::to('/');
     }
 
     /**
